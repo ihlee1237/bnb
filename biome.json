@@ -11,6 +11,6 @@
     }
   },
   "files": {
-    "ignore": ["backend/types/generated", "backend/dist"]
+    "ignore": ["backend/types/generated", "backend/dist", "**/node_modules/*"]
   }
 }

@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "accommodations",
+  "info": {
+    "singularName": "accommodation",
+    "pluralName": "accommodations",
+    "displayName": "accommodation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    }
+  }
+}
