@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "accommodations",
+  "collectionName": "rooms",
   "info": {
-    "singularName": "accommodation",
-    "pluralName": "accommodations",
-    "displayName": "accommodation",
+    "singularName": "room",
+    "pluralName": "rooms",
+    "displayName": "room",
     "description": ""
   },
   "options": {

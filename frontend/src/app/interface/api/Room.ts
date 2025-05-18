@@ -1,6 +1,6 @@
 import type { DateTimeString, UrlString } from "../common";
 
-export interface AccommodationResponse {
+export interface RoomResponse {
   id: number;
   name: string;
   description?: string;
@@ -11,4 +11,4 @@ export interface AccommodationResponse {
   imageSrc: UrlString;
 }
 
-export type AccommodationRequest = Omit<AccommodationResponse, "id">;
+export type RoomRequest = Omit<RoomResponse, "id">;

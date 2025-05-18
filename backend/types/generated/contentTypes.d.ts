@@ -373,13 +373,12 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAccommodationImageAccommodationImage
-  extends Struct.SingleTypeSchema {
-  collectionName: 'accommodation_images';
+export interface ApiRoomImageRoomImage extends Struct.SingleTypeSchema {
+  collectionName: 'room_images';
   info: {
-    displayName: 'accommodation image';
-    pluralName: 'accommodation-images';
-    singularName: 'accommodation-image';
+    displayName: 'room image';
+    pluralName: 'room-images';
+    singularName: 'room-image';
   };
   options: {
     draftAndPublish: true;
@@ -391,7 +390,7 @@ export interface ApiAccommodationImageAccommodationImage
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::accommodation-image.accommodation-image'
+      'api::room-image.room-image'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -405,14 +404,13 @@ export interface ApiAccommodationImageAccommodationImage
   };
 }
 
-export interface ApiAccommodationAccommodation
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'accommodations';
+export interface ApiRoomRoom extends Struct.CollectionTypeSchema {
+  collectionName: 'rooms';
   info: {
     description: '';
-    displayName: 'accommodation';
-    pluralName: 'accommodations';
-    singularName: 'accommodation';
+    displayName: 'room';
+    pluralName: 'rooms';
+    singularName: 'room';
   };
   options: {
     draftAndPublish: true;
@@ -426,10 +424,7 @@ export interface ApiAccommodationAccommodation
     description: Schema.Attribute.String;
     imageSrc: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::accommodation.accommodation'
-    > &
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::room.room'> &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     price: Schema.Attribute.Integer & Schema.Attribute.Required;
@@ -950,8 +945,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::accommodation-image.accommodation-image': ApiAccommodationImageAccommodationImage;
-      'api::accommodation.accommodation': ApiAccommodationAccommodation;
+      'api::room-image.room-image': ApiRoomImageRoomImage;
+      'api::room.room': ApiRoomRoom;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

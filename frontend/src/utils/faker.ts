@@ -1,8 +1,8 @@
-import { postAccommodation } from "@/app/api";
-import type { AccommodationRequest } from "@/app/interface";
+import { postRoom } from "@/app/api";
+import type { RoomRequest } from "@/app/interface";
 import { faker } from "@faker-js/faker";
 
-export const generateFakeAccommodation = (): AccommodationRequest => ({
+export const generateFakeRoom = (): RoomRequest => ({
   name: faker.location.streetAddress(),
   price: faker.number.int({ min: 100_000, max: 1_000_000 }),
   imageSrc: faker.image.urlPicsumPhotos({ width: 300, height: 300 }),
@@ -12,8 +12,8 @@ export const generateFakeAccommodation = (): AccommodationRequest => ({
 });
 
 export const makeDummy = async () => {
-  const data = generateFakeAccommodation();
-  await postAccommodation(data, {
+  const data = generateFakeRoom();
+  await postRoom(data, {
     token: process.env.NEXT_PUBLIC_API_TOKEN,
   });
 };

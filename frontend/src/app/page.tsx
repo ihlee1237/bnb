@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { getAccommodations } from "./api";
+import { getRooms } from "./api";
 import { ListingCard } from "./components/ListingCard";
-import type { Accommodation } from "./interface";
+import type { Room } from "./interface";
 
 const Row = styled.div`
   display: grid;
@@ -12,18 +12,18 @@ const Row = styled.div`
 `;
 
 export default function Home() {
-  const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
+  const [rooms, setRooms] = useState<Room[]>([]);
 
   useEffect(() => {
-    getAccommodations().then((res) => setAccommodations(res));
+    getRooms().then((res) => setRooms(res));
   }, []);
 
   return (
     <div>
       <h1>숙소 목록</h1>
       <Row>
-        {accommodations.map((accommodation: Accommodation) => (
-          <ListingCard {...accommodation} key={accommodation.id} />
+        {rooms.map((room: Room) => (
+          <ListingCard {...room} key={room.id} />
         ))}
       </Row>
     </div>

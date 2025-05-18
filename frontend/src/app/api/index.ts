@@ -1,11 +1,6 @@
 import axios from "axios";
-import type {
-  Accommodation,
-  AccommodationRequest,
-  AccommodationResponse,
-  Auth,
-} from "../interface";
-import { parseAccommodationResponse } from "./utils";
+import type { Auth, Room, RoomRequest, RoomResponse } from "../interface";
+import { parseRoomResponse } from "./utils";
 
 export interface WrappedData<T> {
   data: T;
@@ -46,18 +41,15 @@ export const post = async <T, R, D>(url: string, data: D, config?: RequestConfig
   }
 };
 
-export const getAccommodations = async (): Promise<Accommodation[]> => {
-  return (
-    await get<AccommodationResponse[]>(`${process.env.NEXT_PUBLIC_API_URL}/api/accommodations`)
-  ).map(parseAccommodationResponse);
+export const getRooms = async (): Promise<Room[]> => {
+  return (await get<RoomResponse[]>(`${process.env.NEXT_PUBLIC_API_URL}/api/rooms`)).map(
+    parseRoomResponse,
+  );
 };
 
-export const postAccommodation = async (
-  data: AccommodationRequest,
-  config?: RequestConfig,
-): Promise<void> => {
-  const res = await post<WrappedData<Accommodation>, AccommodationResponse, AccommodationRequest>(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/accommodations`,
+export const postRoom = async (data: RoomRequest, config?: RequestConfig): Promise<void> => {
+  const res = await post<WrappedData<Room>, RoomResponse, RoomRequest>(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/rooms`,
     data,
     config,
   );

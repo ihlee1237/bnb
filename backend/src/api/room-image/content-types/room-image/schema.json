@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "accommodation_images",
+  "collectionName": "room_images",
   "info": {
-    "singularName": "accommodation-image",
-    "pluralName": "accommodation-images",
-    "displayName": "accommodation image"
+    "singularName": "room-image",
+    "pluralName": "room-images",
+    "displayName": "room image"
   },
   "options": {
     "draftAndPublish": true

@@ -1,4 +1,4 @@
-import type { Accommodation } from "@/app/interface";
+import type { Room } from "@/app/interface";
 import { FlexRow } from "@/app/styles/flex";
 import { Label, Title } from "@/app/styles/typography";
 import { formatDateRange } from "@/utils/date";
@@ -36,7 +36,7 @@ const ListingCard = ({
   name,
   checkInDate,
   checkOutDate,
-}: Omit<Accommodation, "id" | "description">) => {
+}: Omit<Room, "id" | "description">) => {
   if (!imageSrc || !name) return;
   return (
     <CardContainer>

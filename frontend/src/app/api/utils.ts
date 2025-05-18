@@ -1,6 +1,6 @@
-import type { Accommodation, AccommodationResponse } from "../interface";
+import type { Room, RoomResponse } from "../interface";
 
-export const parseAccommodationResponse = (response: AccommodationResponse): Accommodation => {
+export const parseRoomResponse = (response: RoomResponse): Room => {
   return {
     ...response,
     checkInDate: new Date(response.checkInDate),
