@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- 집 테두리 -->
+  <path d="M48 128 L128 48 L208 128 V208 H168 A 40 40 0 0 0 88 208 H48 Z" fill="none" stroke="#1E73D9" stroke-width="12" stroke-linejoin="round"/>
+
+  <circle cx="128" cy="132" r="26" fill="none" stroke="#1E73D9" stroke-width="12"/>
+</svg>
+
