@@ -6,7 +6,8 @@
   "scripts": {
     "format": "npx @biomejs/biome format --write .",
     "lint": "npx @biomejs/biome lint .",
-    "check": "npx @biomejs/biome check ."
+    "check": "npx @biomejs/biome check .",
+    "sb": "npm --prefix frontend run storybook"
   },
   "keywords": [],
   "author": "",

@@ -1,32 +1,29 @@
 "use client";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { styled } from "styled-components";
+import { getAccommodations } from "./api";
+import { ListingCard } from "./components/ListingCard";
+import type { Accommodation } from "./interface";
 
-type Accommodation = {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-};
+const Row = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+`;
 
 export default function Home() {
   const [accommodations, setAccommodations] = useState<Accommodation[]>([]);
 
   useEffect(() => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/api/accommodations`)
-      .then((res) => setAccommodations(res.data.data));
+    getAccommodations().then((res) => setAccommodations(res));
   }, []);
 
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold mb-4">숙소 목록</h1>
       {accommodations.map((accommodation: Accommodation) => (
-        <div key={accommodation.id} className="border p-4 mb-2">
-          <h2 className="text-xl">{accommodation.name}</h2>
-          <p>{accommodation.description}</p>
-          <p>₩{accommodation.price}</p>
-        </div>
+        <Row key={accommodation.id}>
+          <ListingCard {...accommodation} />
+        </Row>
       ))}
     </div>
   );
