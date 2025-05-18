@@ -8,6 +8,7 @@ import type { Accommodation } from "./interface";
 const Row = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 16px;
 `;
 
 export default function Home() {
@@ -18,13 +19,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">숙소 목록</h1>
-      {accommodations.map((accommodation: Accommodation) => (
-        <Row key={accommodation.id}>
-          <ListingCard {...accommodation} />
-        </Row>
-      ))}
+    <div>
+      <h1>숙소 목록</h1>
+      <Row>
+        {accommodations.map((accommodation: Accommodation) => (
+          <ListingCard {...accommodation} key={accommodation.id} />
+        ))}
+      </Row>
     </div>
   );
 }

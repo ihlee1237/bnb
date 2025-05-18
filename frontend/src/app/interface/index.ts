@@ -1,2 +1,3 @@
 export type { Accommodation } from "./Accommodation";
-export type { AccommodationResponse } from "./api/AccommodationResponse";
+export type { AccommodationRequest, AccommodationResponse } from "./api/Accommodation";
+export type { Auth } from "./api/AuthResponse";
