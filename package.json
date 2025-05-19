@@ -7,7 +7,8 @@
     "format": "npx @biomejs/biome format --write .",
     "lint": "npx @biomejs/biome lint .",
     "check": "npx @biomejs/biome check .",
-    "sb": "npm --prefix frontend run storybook"
+    "sb": "npm --prefix frontend run storybook",
+    "test": "npm --prefix frontend run test:ci"
   },
   "keywords": [],
   "author": "",

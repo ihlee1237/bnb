@@ -12,11 +12,12 @@
   },
   "files": {
     "ignore": [
+      "**/node_modules/*",
       "backend/types/generated",
       "backend/dist",
-      "**/node_modules/*",
+      "backend/.strapi-updater.json",
       "frontend/.next",
-      "backend/.strapi-updater.json"
+      "frontend/coverage"
     ]
   }
 }

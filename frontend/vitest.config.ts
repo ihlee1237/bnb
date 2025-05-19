@@ -11,7 +11,21 @@ const dirname =
 // More info at: https://storybook.js.org/docs/writing-tests/test-addon
 export default defineConfig({
   test: {
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "html", "lcov"],
+      reportsDirectory: "./coverage",
+      exclude: ["**/*.stories.tsx", "**/test-utils/**", "**/*.d.ts", "**/*.config.ts"],
+    },
     workspace: [
+      {
+        test: {
+          name: "unit",
+          globals: true,
+          environment: "jsdom",
+          include: ["**/*.test.ts", "**/*.test.tsx"],
+        },
+      },
       {
         extends: true,
         plugins: [
@@ -24,8 +38,8 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            name: "chromium",
             provider: "playwright",
+            instances: [{ browser: "chromium" }],
           },
           setupFiles: [".storybook/vitest.setup.ts"],
         },

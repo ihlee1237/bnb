@@ -1,12 +1,27 @@
 import { format } from "date-fns";
 
-export const formatDate = (date: Date, showYear = false, showMonth = true): string => {
-  const template = `${showYear ? "yyyy년 " : ""}${showMonth ? "M월 " : ""}d일`;
+export const formatDate = (date: Date, level: "full" | "month-day" | "day" = "day"): string => {
+  const templateMap = {
+    full: "yyyy년 M월 d일",
+    "month-day": "M월 d일",
+    day: "d일",
+  };
+  const template = templateMap[level];
   return format(date, template);
 };
 
 export const formatDateRange = (startDate: Date, endDate: Date): string => {
-  return `${formatDate(startDate, !isSameYear(new Date(), startDate))}~${formatDate(endDate, !isSameYear(startDate, endDate), !isSameMonth(startDate, endDate))}`;
+  const now = new Date();
+
+  const startFormat = isSameYear(now, startDate) ? "month-day" : "full";
+
+  const endFormat = isSameYear(startDate, endDate)
+    ? isSameMonth(startDate, endDate)
+      ? "day"
+      : "month-day"
+    : "full";
+
+  return `${formatDate(startDate, startFormat)} ~ ${formatDate(endDate, endFormat)}`;
 };
 
 export const isSameYear = (date1: Date, date2: Date): boolean => {
