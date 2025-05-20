@@ -1,4 +1,4 @@
-import { postRoom } from "@/app/api";
+import { postRoom } from "@/app/api/api";
 import type { RoomRequest } from "@/app/interface";
 import { faker } from "@faker-js/faker";
 

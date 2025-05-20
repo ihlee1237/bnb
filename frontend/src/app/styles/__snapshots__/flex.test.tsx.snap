@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Flex > Flex snapshot 1`] = `
+<div
+  class="sc-bXdtCk hQcNhb"
+  gap="10"
+/>
+`;
+
+exports[`Flex > Flex with no gap 1`] = `
+<div
+  class="sc-bXdtCk kBBVNO"
+/>
+`;
+
+exports[`Flex > FlexColumn 1`] = `
+<div
+  class="sc-bXdtCk sc-fmZSGO kBBVNO ftTnuu"
+/>
+`;
+
+exports[`Flex > FlexRow snapshot 1`] = `
+<div
+  class="sc-bXdtCk sc-hKDTPf kBBVNO KflQV"
+/>
+`;

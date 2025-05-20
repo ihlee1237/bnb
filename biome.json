@@ -17,7 +17,8 @@
       "backend/dist",
       "backend/.strapi-updater.json",
       "frontend/.next",
-      "frontend/coverage"
+      "frontend/coverage",
+      "frontend/src/app/api/api.test.ts"
     ]
   }
 }

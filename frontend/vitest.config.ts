@@ -15,15 +15,39 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "html", "lcov"],
       reportsDirectory: "./coverage",
-      exclude: ["**/*.stories.tsx", "**/test-utils/**", "**/*.d.ts", "**/*.config.ts"],
+      exclude: [
+        "**/*.stories.tsx",
+        "**/test-utils/**",
+        "**/*.d.ts",
+        "**/*.config.ts",
+        ".storybook/**",
+        "./src/app/interface/**",
+        "./src/app/layout.tsx",
+        "./src/utils/faker.ts",
+      ],
+      thresholds: {
+        statements: 80,
+        branches: 80,
+        functions: 80,
+        lines: 80,
+      },
     },
     workspace: [
       {
+        esbuild: {
+          jsx: "automatic",
+        },
         test: {
           name: "unit",
           globals: true,
           environment: "jsdom",
           include: ["**/*.test.ts", "**/*.test.tsx"],
+          setupFiles: ["./vitest.setup.ts"],
+        },
+        resolve: {
+          alias: {
+            "@": path.resolve(__dirname, "src"),
+          },
         },
       },
       {

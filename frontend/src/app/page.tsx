@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { getRooms } from "./api";
+import { getRooms } from "./api/api";
 import { ListingCard } from "./components/ListingCard";
 import type { Room } from "./interface";
 
