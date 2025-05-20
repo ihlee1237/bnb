@@ -29,15 +29,11 @@ const InfoContainer = styled.div`
   gap: 2px;
 `;
 
-const ListingCard = ({
-  imageSrc,
-  price,
-  rating,
-  name,
-  checkInDate,
-  checkOutDate,
-}: Omit<Room, "id" | "description">) => {
+type Props = Pick<Room, "name" | "price" | "imageSrc" | "rating" | "checkInDate" | "checkOutDate">;
+
+const ListingCard = ({ imageSrc, price, rating, name, checkInDate, checkOutDate }: Props) => {
   if (!imageSrc || !name) return;
+
   return (
     <CardContainer>
       <ImgContainer>
@@ -45,8 +41,8 @@ const ListingCard = ({
       </ImgContainer>
       <InfoContainer>
         <Title>{name}</Title>
-        <Label>{formatDateRange(checkInDate, checkOutDate)}</Label>
-        <FlexRow gap={4}>
+        <Label>{formatDateRange(new Date(checkInDate), new Date(checkOutDate))}</Label>
+        <FlexRow $gap={4}>
           <Label>{toKRW(price)}</Label>
           <Label>{differenceInDays(checkOutDate, checkInDate)}박</Label>
           <Label>⭐ {rating}</Label>

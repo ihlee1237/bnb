@@ -21,7 +21,7 @@ export const Primary: Story = {
     price: 159_765,
     imageSrc: "https://placehold.co/242x229",
     rating: 4.93,
-    checkInDate: new Date("2025-03-06"),
-    checkOutDate: new Date("2025-03-08"),
+    checkInDate: new Date("2025-03-06").toISOString(),
+    checkOutDate: new Date("2025-03-08").toISOString(),
   },
 };

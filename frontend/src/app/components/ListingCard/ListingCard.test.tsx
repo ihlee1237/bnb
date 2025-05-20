@@ -14,8 +14,11 @@ describe("ListingCard", () => {
     price: 100000,
     rating: 4.5,
     name: "테스트 숙소",
-    checkInDate: today,
-    checkOutDate: tomorrow,
+    checkInDate: today.toISOString(),
+    checkOutDate: tomorrow.toISOString(),
+    documentId: "test-document-id",
+    publishedAt: today.toISOString(),
+    updatedAt: today.toISOString(),
   };
 
   it("숙소 정보가 정상적으로 렌더링되어야 한다", () => {
@@ -27,7 +30,7 @@ describe("ListingCard", () => {
     expect(screen.getByText("1박")).toBeInTheDocument();
     expect(screen.getByText(`⭐ ${props.rating}`)).toBeInTheDocument();
     expect(
-      screen.getByText(formatDateRange(props.checkInDate, props.checkOutDate)),
+      screen.getByText(formatDateRange(new Date(props.checkInDate), new Date(props.checkOutDate))),
     ).toBeInTheDocument();
   });
 

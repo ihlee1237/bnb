@@ -4,7 +4,7 @@ import { Flex, FlexColumn, FlexRow } from "./flex";
 
 describe("Flex", () => {
   it("Flex snapshot", () => {
-    const { container } = render(<Flex gap={10} />);
+    const { container } = render(<Flex $gap={10} />);
     expect(container.firstChild).toMatchSnapshot();
   });
 

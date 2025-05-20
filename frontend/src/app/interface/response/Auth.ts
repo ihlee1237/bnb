@@ -1,11 +1,12 @@
 import type { DateTimeString } from "../common";
+import type { StrApiResponse } from "./strapi";
 
 export interface Auth {
   jwt: string;
   user: User;
 }
 
-export interface User {
+export interface User extends StrApiResponse {
   id: number;
   documentId: string;
   username: string;

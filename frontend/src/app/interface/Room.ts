@@ -1,6 +1,3 @@
-import type { RoomResponse } from "./api/Room";
+import type { RoomResponse } from "./response/room";
 
-export interface Room extends Omit<RoomResponse, "checkInDate" | "checkOutDate"> {
-  checkInDate: Date;
-  checkOutDate: Date;
-}
+export interface Room extends RoomResponse {}

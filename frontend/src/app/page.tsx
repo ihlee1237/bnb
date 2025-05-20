@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { getRooms } from "./api/api";
@@ -23,7 +24,13 @@ export default function Home() {
       <h1>숙소 목록</h1>
       <Row>
         {rooms.map((room: Room) => (
-          <ListingCard {...room} key={room.id} />
+          <Link
+            key={room.id}
+            href={`/rooms/${room.documentId}`}
+            style={{ all: "unset", cursor: "pointer" }}
+          >
+            <ListingCard {...room} />
+          </Link>
         ))}
       </Row>
     </div>

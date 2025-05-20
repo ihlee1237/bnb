@@ -3,7 +3,6 @@
 exports[`Flex > Flex snapshot 1`] = `
 <div
   class="sc-bXdtCk hQcNhb"
-  gap="10"
 />
 `;
 

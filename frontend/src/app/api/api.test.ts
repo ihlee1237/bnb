@@ -1,13 +1,13 @@
 import axios from "axios";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("axios");
 const mockedAxios = axios as unknown as { get: any; post: any };
 
-const parseRoomResponse = vi.fn((room) => ({ ...room, parsed: true }));
-vi.mock("./utils", () => ({
-  parseRoomResponse,
-}));
+beforeAll(() => {
+  process.env.NEXT_PUBLIC_API_URL = "http://mock.api";
+  process.env.NEXT_SERVER_API_URL = "http://mock.server.api";
+});
 
 describe("api module", () => {
   beforeEach(() => {
@@ -18,14 +18,16 @@ describe("api module", () => {
     it("should fetch and unwrap data", async () => {
       mockedAxios.get.mockResolvedValue({ data: { data: "result" } });
       const apiModule = await import("./api");
-      const result = await apiModule.get<string>("url");
+      const result = await apiModule.get<string>("/test-url");
       expect(result).toBe("result");
+      expect(mockedAxios.get).toHaveBeenCalledWith("http://mock.api/test-url");
     });
 
     it("should throw on error", async () => {
       mockedAxios.get.mockRejectedValue(new Error("fail"));
       const apiModule = await import("./api");
-      await expect(apiModule.get("url")).rejects.toThrow("fail");
+      await expect(apiModule.get("/test-url")).rejects.toThrow("fail");
+      expect(mockedAxios.get).toHaveBeenCalledWith("http://mock.api/test-url");
     });
   });
 
@@ -33,16 +35,21 @@ describe("api module", () => {
     it("should post data and return response", async () => {
       mockedAxios.post.mockResolvedValue("posted");
       const apiModule = await import("./api");
-      const result = await apiModule.post<any, any, any>("url", { foo: "bar" });
+      const result = await apiModule.post<any, any, any>("/test-url", { foo: "bar" });
       expect(result).toBe("posted");
+      expect(mockedAxios.post).toHaveBeenCalledWith(
+        "http://mock.api/test-url",
+        { data: { foo: "bar" } },
+        { headers: {} },
+      );
     });
 
     it("should include Authorization header if token is present", async () => {
       mockedAxios.post.mockResolvedValue("posted");
       const apiModule = await import("./api");
-      await apiModule.post<any, any, any>("url", { foo: "bar" }, { token: "abc" });
+      await apiModule.post<any, any, any>("/test-url", { foo: "bar" }, { token: "abc" });
       expect(mockedAxios.post).toHaveBeenCalledWith(
-        "url",
+        "http://mock.api/test-url",
         { data: { foo: "bar" } },
         { headers: { Authorization: "Bearer abc" } },
       );
@@ -53,14 +60,12 @@ describe("api module", () => {
     it("방 목록을 올바르게 반환한다", async () => {
       const mockRooms = [{ id: 1 }, { id: 2 }];
       mockedAxios.get.mockResolvedValue({ data: { data: mockRooms } });
-      vi.doMock("./utils", () => ({ parseRoomResponse }));
       const apiModule = await import("./api");
       const result = await apiModule.getRooms();
       expect(result).toEqual([
-        { id: 1, parsed: true },
-        { id: 2, parsed: true },
+        { id: 1 },
+        { id: 2 },
       ]);
-      expect(parseRoomResponse).toHaveBeenCalledTimes(2);
       vi.resetModules();
     });
   });

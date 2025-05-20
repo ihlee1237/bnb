@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const Flex = styled.div<{ gap?: number }>`
+export const Flex = styled.div<{ $gap?: number }>`
   display: flex;
-  gap: ${({ gap }) => (gap ? `${gap}px` : "0")};
+  gap: ${({ $gap: gap }) => (gap ? `${gap}px` : "0")};
 `;
 
 export const FlexRow = styled(Flex)`
